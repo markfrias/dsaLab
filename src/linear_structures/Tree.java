@@ -33,6 +33,7 @@ class TreeNode<T extends Comparable<T>>{
 // Tree class definition
 public class Tree<T extends Comparable<T>> {
     private TreeNode<T> root;
+    private int spaces = 0;
 
     public Tree(){
         root = null;
@@ -82,6 +83,35 @@ public class Tree<T extends Comparable<T>> {
         postorderHelper(node.leftNode);
         postorderHelper(node.rightNode);
         System.out.printf("%s ", node.data);
+    }
+
+    public void outputTree(int totalSpaces, TreeNode<T> node){
+        if (node == null)
+            return;
+
+        outputTree(totalSpaces + 5, node.rightNode);
+
+        for (int i = 1; i <= totalSpaces; i++){
+            System.out.print(" ");
+        }
+
+        System.out.println(node.data);
+
+        node = node.leftNode;
+
+        totalSpaces += 5;
+
+
+        outputTree(totalSpaces, node);
+
+
+
+
+
+    }
+
+    public TreeNode<T> getRoot(){
+        return this.root;
     }
 
 }
